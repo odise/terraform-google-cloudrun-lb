@@ -5,9 +5,7 @@ module "upload_bucket" {
   names           = ["cmcr-test"]
   prefix          = ""
   set_admin_roles = true
-  bucket_admins = {
-    cmcr-test = "serviceAccount:${module.service_accounts.email}"
-  }
+  admins          = ["serviceAccount:${module.service_accounts.email}"]
 }
 
 module "service_accounts" {
