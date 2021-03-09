@@ -104,7 +104,7 @@ variable "service_account_display_name" {
 }
 
 variable "service_account_roles" {
-  description = "List of permissions set to the service account to be created. E.g. `[\"${var.project_id}=>roles/editor\"]`."
+  description = "List of permissions set to the service account to be created. E.g. `[\"project_id=>roles/editor\"]`."
   type        = list(string)
-  default = []
+  default     = []
 }

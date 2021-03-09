@@ -29,5 +29,5 @@ module "example" {
   create_service_account       = true
   service_account_name         = "cmcr-sa"
   service_account_display_name = "Service account for Chart Museum Cloud Run service"
-  service_account_roles = ["${var.project_id}=>roles/editor"]
+  service_account_roles        = ["${var.project_id}=>roles/editor"]
 }

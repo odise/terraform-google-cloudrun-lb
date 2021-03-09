@@ -1,0 +1,36 @@
+name: terraform-validate
+on: [push]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "~> 0.13.0"
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check -recursive -diff=true .
+      - name: Terraform init
+        id: init
+        run: terraform init
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+      - name: tflint
+        id: tflint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          wget -q https://github.com/terraform-linters/tflint-ruleset-google/releases/download/v0.5.1/tflint-ruleset-google_linux_amd64.zip -O tflint-ruleset-google_linux_amd64.zip
+          unzip tflint-ruleset-google_linux_amd64.zip
+          rm tflint-ruleset-google_linux_amd64.zip
+          mkdir -p ${{ github.workspace }}/.tflint.d/plugins/
+          mv tflint-ruleset-google ${{ github.workspace }}/.tflint.d/plugins
+          for i in $(find . -type f -not -path "*/.terraform/*" -name 'main.tf' -exec dirname {} \; | sort -u); do
+            printf "Operating on \"${i%%/}\"\n"
+            TFLINT_PLUGIN_DIR=${{ github.workspace }}/.tflint.d/plugins tflint --loglevel=info ${i%%/}
+          done
