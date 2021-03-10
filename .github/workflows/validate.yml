@@ -8,8 +8,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 100
-
-      - uses: hashicorp/setup-terraform@v1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: "~> 0.13.0"
       - name: Terraform fmt
@@ -34,3 +34,7 @@ jobs:
             printf "Operating on \"${i%%/}\"\n"
             TFLINT_PLUGIN_DIR=${{ github.workspace }}/.tflint.d/plugins tflint --loglevel=info ${i%%/}
           done
+      - name: tfsec
+        uses: triat/terraform-security-scan@v2.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
