@@ -29,7 +29,7 @@ module "service_account" {
   project_id = "global-justice-306415"
 }
 
-#blabla
+#blabla2222
 
 # module "lb" {
 #   source  = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
