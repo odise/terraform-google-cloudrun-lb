@@ -29,6 +29,8 @@ module "service_account" {
   project_id = "global-justice-306415"
 }
 
+#blabla
+
 # module "lb" {
 #   source  = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
 #   version = "~> 4.5.0"
