@@ -111,6 +111,11 @@ variable "service_account_roles" {
 
 variable "lb_backend_log_config_enable" {
   type        = bool
-  default     = null
+  default     = false
   description = "This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver. If set `true` sample rate will be set 1.0."
+}
+variable "lb_backend_log_config_sample_rate" {
+  type        = number
+  default     = 1.0
+  description = "This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0."
 }
