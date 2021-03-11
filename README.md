@@ -34,7 +34,8 @@ Configurable module to:
 | dns\_managed\_zone | Name of the Google managed zone the DNS record will be created in | `string` | `""` | no |
 | dns\_record\_name | Record name of the `domain_name` parameter pointing at the load balancer on (e.g. `registry`). Used if `ssl` is `true` | `string` | `""` | no |
 | domain\_name | Domain name to run the load balancer on (e.g. example.com). Used if `ssl` is `true` | `string` | `""` | no |
-| lb\_backend\_log\_config\_enable | This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver. If set `true` sample rate will be set 1.0. | `bool` | `null` | no |
+| lb\_backend\_log\_config\_enable | This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver. If set `true` sample rate will be set 1.0. | `bool` | `false` | no |
+| lb\_backend\_log\_config\_sample\_rate | This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0. | `number` | `1` | no |
 | lb\_name | Name for load balancer and associated resources | `string` | `"cr-lb"` | no |
 | name | Name which will be used as a part of NEG name | `string` | `"cr"` | no |
 | name\_suffix | Add a name suffix to relevant Terraform resources | `string` | `""` | no |
