@@ -59,8 +59,8 @@ module "lb" {
         oauth2_client_secret = ""
       }
       log_config = {
-        enable      = false
-        sample_rate = null
+        enable      = var.lb_backend_log_config_enable
+        sample_rate = var.lb_backend_log_config_enable == true ? 1.0 : null
       }
     }
   }
