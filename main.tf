@@ -60,7 +60,7 @@ module "lb" {
       }
       log_config = {
         enable      = var.lb_backend_log_config_enable
-        sample_rate = var.lb_backend_log_config_sample_rate
+        sample_rate = var.lb_backend_log_config_enable ? var.lb_backend_log_config_sample_rate : null
       }
     }
   }
