@@ -51,6 +51,7 @@ Configurable module to:
 
 | Name | Description |
 |------|-------------|
+| cloud\_run\_service\_name | Cloud Run service name. |
 | cloud\_run\_status | From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app |
 | dns\_name | DNS name which points to the created load balancer |
 | load\_balancer\_ip | External IP of the created load balancer |
