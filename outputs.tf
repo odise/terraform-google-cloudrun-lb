@@ -22,3 +22,8 @@ output "service_account_email" {
   description = "Email address of the IAM service account associated with the revision of the service"
   value       = google_cloud_run_service.service.template[0].spec[0].service_account_name
 }
+
+output "cloud_run_service_name" {
+  description = "Cloud Run service name."
+  value       = "${var.cloud_run_service_name}-${random_id.suffix.hex}"
+}
