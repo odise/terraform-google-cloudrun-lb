@@ -95,6 +95,12 @@ resource "google_cloud_run_service" "service" {
         ports {
           container_port = var.container_port
         }
+        resources {
+          limits = {
+            cpu    = "${var.container_resources_limits_cpus * 1000}m"
+            memory = "${var.container_resources_limits_memory}Mi"
+          }
+        }
       }
       service_account_name = var.create_service_account ? module.service_account[0].email : var.service_account_email
     }

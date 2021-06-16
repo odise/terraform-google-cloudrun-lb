@@ -61,17 +61,25 @@ variable "container_image" {
   description = "Container image to use, eg. `gcr.io/my-project/my-image:latest`. Image needs to be stored either in Google Container Registry or Google Artifact Registry"
   type        = string
 }
-
 variable "container_env" {
   description = "Map of environment variables that will be passed to the container"
   type        = map(string)
   default     = null
 }
-
 variable "container_port" {
   description = "TCP port to open in the container"
   type        = number
   default     = 8080
+}
+variable "container_resources_limits_cpus" {
+  type        = number
+  default     = 1
+  description = "CPUs measured in 1000 cpu units to allocate to service instances. Have a look at https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu for details."
+}
+variable "container_resources_limits_memory" {
+  type        = number
+  default     = 256
+  description = "Memory in MiB (2^26 bytes) to allocate to service instances. Have a look at https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory for details."
 }
 
 variable "cloud_run_service_name" {
