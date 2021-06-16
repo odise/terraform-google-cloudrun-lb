@@ -30,6 +30,8 @@ Configurable module to:
 | container\_env | Map of environment variables that will be passed to the container | `map(string)` | `null` | no |
 | container\_image | Container image to use, eg. `gcr.io/my-project/my-image:latest`. Image needs to be stored either in Google Container Registry or Google Artifact Registry | `string` | n/a | yes |
 | container\_port | TCP port to open in the container | `number` | `8080` | no |
+| container\_resources\_limits\_cpus | CPUs measured in 1000 cpu units to allocate to service instances. Have a look at https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu for details. | `number` | `1` | no |
+| container\_resources\_limits\_memory | Memory in MiB (2^26 bytes) to allocate to service instances. Have a look at https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory for details. | `number` | `256` | no |
 | create\_service\_account | Whether to create a new service account associated with the revision of the service | `bool` | `false` | no |
 | dns\_managed\_zone | Name of the Google managed zone the DNS record will be created in | `string` | `""` | no |
 | dns\_record\_name | Record name of the `domain_name` parameter pointing at the load balancer on (e.g. `registry`). Used if `ssl` is `true` | `string` | `""` | no |
