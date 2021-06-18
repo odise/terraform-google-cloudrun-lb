@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">=0.13.5"
+}
+
 module "upload_bucket" {
   source          = "terraform-google-modules/cloud-storage/google"
   version         = "1.7.2"
@@ -36,7 +40,9 @@ module "example" {
     STORAGE_GOOGLE_BUCKET = module.upload_bucket.name
     STORAGE_GOOGLE_PREFIX = ""
   }
-  cloud_run_service_name = "chartmuseum-example"
-  create_service_account = false
-  service_account_email  = module.service_accounts.email
+  cloud_run_service_name                     = "chartmuseum-example"
+  create_service_account                     = false
+  service_account_email                      = module.service_accounts.email
+  additional_managed_ssl_certificate_domains = ["cm.sandbox.example.com"]
+  dns_record_project_id                      = "fake-project-1234"
 }
