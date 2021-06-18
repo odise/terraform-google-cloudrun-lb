@@ -38,7 +38,7 @@ module "lb" {
   project = var.project_id
 
   ssl                             = var.ssl
-  managed_ssl_certificate_domains = coalescelist(["${local.dns_record_name}${var.domain_name}"], var.additional_managed_ssl_certificate_domains)
+  managed_ssl_certificate_domains = compact(concat(["${local.dns_record_name}${var.domain_name}"], var.additional_managed_ssl_certificate_domains))
   https_redirect                  = var.ssl
 
   backends = {
