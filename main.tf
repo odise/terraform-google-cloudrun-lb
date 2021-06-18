@@ -117,7 +117,7 @@ resource "google_cloud_run_service_iam_member" "public_access" {
 
 resource "google_dns_record_set" "dns_record" {
   count   = var.domain_name == "" || var.dns_record_name == "" || var.dns_managed_zone == "" ? 0 : 1
-  project = var.project_id
+  project = var.dns_record_project_id == "" ? var.project_id : var.dns_record_project_id
   name    = "${local.dns_record_name}${var.domain_name}."
   type    = "A"
   ttl     = 300

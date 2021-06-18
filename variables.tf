@@ -39,6 +39,12 @@ variable "dns_managed_zone" {
   default     = ""
 }
 
+variable "dns_record_project_id" {
+  description = "Project ID the Google managed zone the DNS record will be created in. If empty `project_id` will be used."
+  type        = string
+  default     = ""
+}
+
 variable "name" {
   description = "Name which will be used as a part of NEG name"
   type        = string
