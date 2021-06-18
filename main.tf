@@ -104,8 +104,13 @@ resource "google_cloud_run_service" "service" {
       }
       service_account_name = var.create_service_account ? module.service_account[0].email : var.service_account_email
     }
+    metadata {
+      labels      = var.labels
+      annotations = var.template_metadata_annotations
+    }
   }
 }
+
 
 resource "google_cloud_run_service_iam_member" "public_access" {
   location = google_cloud_run_service.service.location

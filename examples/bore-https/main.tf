@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">=0.13.5"
+}
+
 module "service_accounts" {
   source        = "terraform-google-modules/service-accounts/google"
   version       = "~> 3.0"

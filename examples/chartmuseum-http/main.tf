@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">=0.13.5"
+}
+
 module "upload_bucket" {
   source     = "terraform-google-modules/cloud-storage/google"
   version    = "1.7.2"
@@ -30,4 +34,7 @@ module "example" {
   service_account_name         = "cmcr-sa"
   service_account_display_name = "Service account for Chart Museum Cloud Run service"
   service_account_roles        = ["${var.project_id}=>roles/editor"]
+
+  template_metadata_annotations = { generated-by = "magic-modules" }
+  labels                        = { my = "label" }
 }
